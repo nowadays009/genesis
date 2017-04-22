@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	
+	<!-- 컨트롤러에 설정 되어있지 않는 것은 WAS에게 위임한다. -->
+	<mvc:default-servlet-handler />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	 <!--   javascript/jquery -->
+	 <mvc:resources mapping="/js/**"  location="/resources/js/" /> 
+	  
+	<!--  img path -->
+  	 <mvc:resources mapping="/img/**" location="/resources/img/" />
+	  
+	<!--  css path -->
+	 <mvc:resources mapping="/css/**" location="/resources/css/" />
+	
+	<context:component-scan base-package="com.company.genesis" />
+	<context:component-scan base-package="com.company.genesis.controller" />
+	<context:component-scan base-package="com.company.genesis.mapper" />
+	<context:component-scan base-package="com.company.genesis.model.service" />
+	<context:component-scan base-package="com.company.genesis.model.dto" />
+	
+</beans:beans>
